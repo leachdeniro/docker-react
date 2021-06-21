@@ -86,3 +86,8 @@ https://facebook.github.io/create-react-app/docs/running-tests#linux-macos-bash
 and environment variables in Docker here:
 
 https://docs.docker.com/engine/reference/run/#env-environment-variables
+
+
+
+
+cambio para tavisci
