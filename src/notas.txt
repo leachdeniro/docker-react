@@ -1,0 +1,45 @@
+React App Exits Immediately with Docker Run Command
+3-22-2020
+
+Due to a recent update in the Create React App library, we will need to change how we start our containers.
+
+In the upcoming lecture, you'll need to add the -it flag to run the container in interactive mode:
+
+docker run -it -p 3000:3000 IMAGE_ID
+
+Attaching to Web container
+In the upcoming lecture, Stephen will accidentally attach to the Web container instead of the Tests container. 
+Since the contents of the containers are the same, this will yield the exact same results and the explanation 
+remains valid.
+
+
+Named Builders and AWS
+updated 10-1-2020
+
+In the next lecture, we will be creating a multi-step build in our production Dockerfile. When we deploy to AWS in section 7, this currently will fail if you attempt to use a named builder as shown.
+
+To remedy this, we should create an unnamed builder like so:
+
+Instead of this:
+
+FROM node:alpine as builder
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+ 
+FROM nginx
+COPY --from=builder /app/build /usr/share/nginx/html
+
+Do this:
+
+FROM node:alpine
+WORKDIR '/app'
+COPY package.json .
+RUN npm install
+COPY . .
+RUN npm run build
+ 
+FROM nginx
+COPY --from=0 /app/build /usr/share/nginx/html
