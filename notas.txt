@@ -88,6 +88,33 @@ and environment variables in Docker here:
 https://docs.docker.com/engine/reference/run/#env-environment-variables
 
 
+Important info about AWS Platform Versions
+------------------------------------------
+updated 10-8-2020
+
+On October 6, AWS made some significant platform changes that will affect our single container application. 
+Among these changes was adding the full support of using Docker Compose to provision a production AWS environment. 
+This means that Elastic Beanstalk will no longer first look for a Dockerfile, it will first look for a docker-compose 
+file and attempt to build and run a container from it.
+
+When creating our Elastic Beanstalk environment in the next lecture, we need to select Docker running on 
+64bit Amazon Linux instead of Docker running on 64bit Amazon Linux 2. This will ensure that our container is built 
+using the Dockerfile and not the compose file.
+
+Travis Keys Update and Account Migration
+----------------------------------------
+In the upcoming lecture, we will be adding our AWS variables to the deploy script of the .travis.yml file. 
+There is a slight change that will be required, otherwise, you will get an error when Travis attempts to run your code.
+
+The code will now look like this:
+
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
 
 
-cambio para tavisci
+Important - Please read before deploying
+
+Travis is in the process of finalizing its transition from .org to .com. By the end of May 2021, the .org services will 
+be fully shut down. If you are still using a travis-ci.org account you will need to follow this migration guide ASAP:
+
+https://docs.travis-ci.com/user/migrate/open-source-repository-migration#migrating-a-repository
