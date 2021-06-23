@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          ¿A qué hora es el partido? - A las 17:00 hrs.
+          ¿A qué hora es el partido? - mañana a las 17:00 hrs., creo
         </p>
         <a
           className="App-link"
